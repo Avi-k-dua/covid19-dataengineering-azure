@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "covid19-analysis-azdf"
+		},
+		"ls_ablob_covid19analysissta_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covid19analysisdl_accountKey": {
+			"value": ""
+		},
+		"ls_sqldb_covid19_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covid19analysisdl_properties_typeProperties_url": {
+			"value": "https://covid19analysisdl.dfs.core.windows.net/"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"value": "0831-184947-25b7mlie"
+		},
+		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
+			"value": "@{linkedService().sourceBaseURL}"
+		},
+		"ls_key_vault_properties_typeProperties_baseUrl": {
+			"value": "https://covid19-analysis-kv.vault.azure.net/"
+		},
+		"tr_population_st_to_dl_properties_typeProperties_scope": {
+			"value": "/subscriptions/a99520ae-ae45-4be4-9629-98fe3f487fc0/resourceGroups/covid19-analysis-rg/providers/Microsoft.Storage/storageAccounts/covid19analysissta"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
