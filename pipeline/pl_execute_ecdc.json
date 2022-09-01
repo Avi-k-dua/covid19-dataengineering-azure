@@ -1,0 +1,146 @@
+{
+	"name": "pl_execute_ecdc",
+	"properties": {
+		"activities": [
+			{
+				"name": "Ingest ECDC Data",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ingest_ecdc_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_process_cases_and_deaths_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Ingest ECDC Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_process_cases_and_deaths_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_process_hospital_admissions_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Ingest ECDC Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_process_hospital_admissions_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_process_testing_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Ingest ECDC Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_process_testing_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_load_cases_and_deaths_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_process_cases_and_deaths_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_load_cases_and_deaths_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_load_hospitals_admissions",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_process_hospital_admissions_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_load_hospitals_admissions",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_load_testing",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_process_testing_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_load_testing",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Execute"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-01T02:01:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

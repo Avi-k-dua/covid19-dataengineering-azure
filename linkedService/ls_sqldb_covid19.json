@@ -1,0 +1,19 @@
+{
+	"name": "ls_sqldb_covid19",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=covid19reporting-serv.database.windows.net;Initial Catalog=covid19-db;User ID=adm",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_key_vault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqldbadmpassword"
+			}
+		}
+	}
+}

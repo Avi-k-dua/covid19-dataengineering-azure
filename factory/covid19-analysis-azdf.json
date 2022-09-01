@@ -1,0 +1,9 @@
+{
+	"name": "covid19-analysis-azdf",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "54f978e3-d7b7-4f70-ac4f-5b74d4d14987",
+		"tenantId": "707c861d-6374-4af3-b74e-404192474f68"
+	}
+}
